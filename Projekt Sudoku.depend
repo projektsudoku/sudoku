@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1523258559 source:c:\users\teilnehmer\desktop\projekt sudoku\main.c
+	<stdio.h>
+	<stdlib.h>
+
