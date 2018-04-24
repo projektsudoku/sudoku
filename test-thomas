@@ -5,6 +5,7 @@ int loadGrid();
 int stdAusgabe();
 int mainMenu();
 int gameMenu();
+int startGame();
 
 
 int main(){
@@ -57,27 +58,12 @@ int gameMenu(){
 }
 
 int startGame(int diff){
-    int x = 0, y = 0;
-    system("cls");
-    printf("Viel Spass!\n\n");
-    loadGrid();
-
-    do{
-        printf("Eingabe Zahl X: ");
-        scanf("%i",x);
-        printf("Eingabe Zahl Y: ");
-        scanf("%i",y);
-        
-        
-        
-    }while(diff == 1);
-}
-
-int loadGrid(){
+    int x,y;
     int i = 0;
     int j = 0;
     int xBorder = 1;
     int yBorder = 3;
+    char z  = ' ';
     char setDot = '.';
     int xGrid = 10;
     int yGrid = 10;
@@ -99,6 +85,92 @@ int loadGrid(){
             }
 
             backGrid[i][j] = setDot;
+            printf(" %c", backGrid[i][j]);
+
+            if(i == yBorder && j == 9){
+                printf(" |\n +-------+-------+-------+\n");
+                yBorder = yBorder + 3;
+                borderFlag = 1;
+            }else if(j == 9){
+                printf(" |");
+                borderFlag = 0;
+            }
+        }
+        if(borderFlag == 0){
+             printf("\n");
+        }
+    }
+    do{
+        yBorder = 3;
+        printf("Eingabe X: ");
+        scanf("%i",&x);
+        printf("Eingabe Y: ");
+        scanf("%i",&y);
+        printf("Eingabe Zahl : ");
+        fflush(stdin);
+        z = getchar();
+        backGrid[x][y] = z;
+        system("cls");
+        for(i = 1;i<yGrid;i++){
+        xBorder = 1;
+        for(j = 1;j<xGrid;j++){
+
+            if(i == 1 && j == 1){
+                printf(" +-------+-------+-------+\n");
+            }
+
+            if(j == xBorder){
+                printf(" |");
+                xBorder = xBorder + 3;
+            }
+
+            //backGrid[i][j] = setDot;
+            printf(" %c", backGrid[i][j]);
+
+            if(i == yBorder && j == 9){
+                printf(" |\n +-------+-------+-------+\n");
+                yBorder = yBorder + 3;
+                borderFlag = 1;
+            }else if(j == 9){
+                printf(" |");
+                borderFlag = 0;
+            }
+        }
+        if(borderFlag == 0){
+             printf("\n");
+        }
+    }
+    }while(diff != 0);
+}
+
+int loadGrid(int x, int y){
+    int i = 0;
+    int j = 0;
+    int xBorder = 1;
+    int yBorder = 3;
+    char setDot = '.';
+    int xGrid = 10;
+    int yGrid = 10;
+    int borderFlag;
+    int setNum;
+
+    int backGrid[xGrid][yGrid];
+
+    for(i = 1;i<yGrid;i++){
+        xBorder = 1;
+        for(j = 1;j<xGrid;j++){
+
+            if(i == 1 && j == 1){
+                printf(" +-------+-------+-------+\n");
+            }
+
+            if(j == xBorder){
+                printf(" |");
+                xBorder = xBorder + 3;
+            }
+
+            backGrid[i][j] = setDot;
+            backGrid[x][y] = setNum;
             printf(" %c", backGrid[i][j]);
 
             if(i == yBorder && j == 9){
