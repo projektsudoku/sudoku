@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+
+int stdAusgabe();
+int mainMenu();
+int gameMenu();
+
+
+int main(){
+
+    stdAusgabe();
+
+    mainMenu();
+
+    return 0;
+}
+
+int stdAusgabe(){
+    printf("Wilkommen zu Sudoku!\n\n");
+
+    printf("Bitte waehlen Sie einen Menuepunkt: \n");
+    printf("(Geben Sie die Zahl ein und bestaetigen Sie mit der Eingabetaste)\n\n");
+
+    return 0;
+}
+
+int mainMenu(){
+    int selection = 0;
+    do{
+        system("cls");
+        stdAusgabe();
+
+        printf("1. Spielen \n2. Anleitung\n3. Verlassen\n\n");
+        printf("Eingabe Mainmenu: ");
+        scanf("%i", &selection);
+        switch(selection){
+            case(1): gameMenu();break;
+            case(2): printf("Sie wollen die Anleitung lesen\n");break;
+            case(3): printf("Sie wollen das Speiel verlassen\n");break;
+        }
+    }while(selection != 3);
+}
+
+int gameMenu(){
+    int gmSelection = 0;
+    system("cls");
+    stdAusgabe();
+    printf("1. Einfach \n2. Mittel\n3. Schwer \n4. Zum Hauptmenu\n\n");
+    printf("Eingabe Mainmenu: ");
+
+    scanf("%i", &gmSelection);
+    switch(gmSelection){
+        case(1): printf("Sie wollen Sudoku 1 spielen");break;
+        case(2): printf("Sie wollen Sudoku 2 spielen");break;
+        case(3): printf("Sie wollen Sudoku 3 spielen\n");break;
+        case(4): printf("Verlassen\n");break;
+    }
+}
