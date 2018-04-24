@@ -1,34 +1,42 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int checkDuplicates()
+int sudokuPreset()
 {
-    int array[10][10];
-    array[1][1] = 1;
-    array[1][2] = 2;
-    array[1][3] = 3;
-    array[1][4] = 4;
-    array[1][5] = 5;
-    array[1][6] = 6;
-    array[1][7] = 7;
-    array[1][8] = 8;
-    array[1][9] = 9;
+    int presetSudoku[10][10];
+    int spielerEingabe[10][10];
 
-    int i, j, rowLength = 10, columnLength = 10;
+    presetSudoku[1][1] = 1;
+    presetSudoku[1][2] = 2;
+    presetSudoku[1][3] = 3;
 
-    for (i = 1; i < rowLength; i++) {
-        for (j = i + 1; i < columnLength; j++)
-        if (array[i][i] == array[i][j]) {
-            printf("No dupes allowed.");
-            return 1;
+    spielerEingabe[1][1] = 3;
+    spielerEingabe[1][2] = 1;
+    spielerEingabe[1][3] = 2;
+
+    checkDupes(presetSudoku, spielerEingabe);
+}
+
+int checkDupes(int presetSudoku[10][10], int spielerEingabe[10][10])
+{
+    int i = 0, j = 0;
+
+    for (i = 1; i < 10; i++) {
+        for (j = i; j < 10; j++) {
+            if (presetSudoku[i][j] == spielerEingabe[i][j]) {
+                printf("No dupes.");
+                return 1;
+            }
         }
+        printf("\nIhre Eingabe stimmen mit der Lösung überein!");
+        printf("\nHerzlichen Glueckwunsch!");
+        return 0;
     }
-    return 0;
 }
 
 int main()
 {
-    checkDuplicates();
+    sudokuPreset();
 
     return 0;
 }
