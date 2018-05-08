@@ -68,6 +68,10 @@ int startGame(int diff){
     int xGrid = 10;
     int yGrid = 10;
     int borderFlag;
+    
+    //Vergangene Zeit seit 01.01.1970 00:00 Uhr
+    time_t now;
+    time(&now);
 
     int backGrid[xGrid][yGrid];
 
