@@ -1,0 +1,133 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int startGame(){
+    int x,y;
+    char z  = ' ';
+    int diff = 1;
+    int valid = 0;
+    int forYGrid = 0;
+    int forXGrid = 0;
+    int xBorder = 1;
+    int yBorder = 3;
+    char setDot = '.';
+    int xGrid = 10;
+    int yGrid = 10;
+    int borderFlag;
+    int backGrid[xGrid][yGrid];
+
+    for(forYGrid = 1;forYGrid<yGrid;forYGrid++){
+        xBorder = 1;
+        for(forXGrid = 1;forXGrid<xGrid;forXGrid++){
+
+            if(forYGrid == 1 && forXGrid == 1){
+                printf(" +-------+-------+-------+\n");
+            }
+
+            if(forXGrid == xBorder){
+                printf(" |");
+                xBorder = xBorder + 3;
+            }
+
+            backGrid[forYGrid][forXGrid] = setDot;
+            printf(" %c", backGrid[forYGrid][forXGrid]);
+
+            if(forYGrid == yBorder && forXGrid == 9){
+                printf(" |\n +-------+-------+-------+\n");
+                yBorder = yBorder + 3;
+                borderFlag = 1;
+            }else if(forXGrid == 9){
+                printf(" |");
+                borderFlag = 0;
+            }
+        }
+        if(borderFlag == 0){
+             printf("\n");
+        }
+    }
+    do{
+
+        do{
+            printf("Eingabe X (1-9): ");
+            scanf("%i",&x);
+            valid = checkValidInt(x);
+            if(valid == 0){
+                printf("Eine Gueltige Zahl eingeben!/n");
+            }
+        }while(valid == 0);
+
+        do{
+            printf("Eingabe Y (1-9): ");
+            scanf("%i",&y);
+            valid = checkValidInt(y);
+            if(valid == 0){
+                printf("Eine Gueltige Zahl eingeben!");
+            }
+        }while(valid == 0);
+
+        do{
+            printf("Eingabe Zahl (1-9): ");
+            fflush(stdin);
+            z = getchar();
+        }while(valid == 0);
+
+        backGrid[x][y] = z;
+        system("cls");
+
+        //HINWEIS LADEN
+
+        //NEULADEN DES GRID
+        yBorder = 3;
+        for(forYGrid = 1;forYGrid<yGrid;forYGrid++){
+            xBorder = 1;
+            for(forXGrid = 1;forXGrid<xGrid;forXGrid++){
+
+                if(forYGrid == 1 && forXGrid == 1){
+                    printf(" +-------+-------+-------+\n");
+                }
+
+                if(forXGrid == xBorder){
+                    printf(" |");
+                    xBorder = xBorder + 3;
+                }
+
+                //backGrid[forYGrid][forXGrid] = setDot;
+                printf(" %c", backGrid[forYGrid][forXGrid]);
+
+                if(forYGrid == yBorder && forXGrid == 9){
+                    printf(" |\n +-------+-------+-------+\n");
+                    yBorder = yBorder + 3;
+                    borderFlag = 1;
+                }else if(forXGrid == 9){
+                    printf(" |");
+                    borderFlag = 0;
+                }
+            }
+            if(borderFlag == 0){
+                 printf("\n");
+            }
+        }
+    }while(diff != 0);
+}
+
+int checkValidInt(int number){
+    int i = 0;
+    for(i = 1; i < 10;i++){
+        if(number == i){
+            return 1;
+        }
+    }
+    return 0;
+}
+
+char checkValidChar(char number){
+    int i = 0;
+    for(i = 1; i < 10; i++){
+        if(number == i){
+            return 1;
+        }else if(number == ' ' || '.'){
+            return 1;
+        }
+    }
+    return 0;
+}
